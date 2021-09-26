@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "build",
+    "module": "esnext",
+    "target": "es5",
+    "lib": [
+      "ES2017",
+      "esnext",
+      "dom"
+    ],
+    "sourceMap": true,
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": false,
+    "noImplicitThis": false,
+    "noImplicitAny": true,
+    "strictNullChecks": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "noEmitOnError": true,
+    "removeComments": true,
+    "downlevelIteration": true,
+    "strict": true,
+    "noEmit": true,
+    "traceResolution": false,
+    "noFallthroughCasesInSwitch": true
+  },
+  "exclude": [
+    "**/node_modules",
+    "**build",
+    "scripts"
+  ],
+  "include": [
+    "./src/*.ts",
+    "./src/*.tsx",
+    "./src/*.d.ts",
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "./src/**/*.d.ts",
+    "./src/**/*.d.tsx"
+  ]
+}

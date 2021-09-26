@@ -1,0 +1,21 @@
+{
+  "name": "digital-wallet",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/diamondvo/digital-wallet",
+  "author": "Kim Kim <vokimcuong1202@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "yarn workspaces run start"
+  },
+  "dependencies": {
+    "eslint": "^7.32.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.3"
+  },
+  "workspaces": [
+    "app/frontend"
+  ]
+}
