@@ -1,0 +1,38 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon nodemon.json",
+    "build": "cross-env NODE_ENV=production webpack && yarn copy",
+    "copy": "cpr ./build/ ../build/server/ -o",
+    "clean": "rimraf ./build rimraf ../build/server mkdir ../build/server",
+    "prestart": "yarn clean && kill-port 5000"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.4",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-typescript": "^7.15.0",
+    "@babel/runtime": "^7.15.4",
+    "apollo-server-types": "^3.2.0",
+    "babel-loader": "^8.0.6",
+    "graphql-request": "^3.5.0",
+    "nodemon": "^2.0.13",
+    "regenerator": "^0.14.7",
+    "webpack": "^4.38.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-graphql-loader": "^1.0.2",
+    "webpack-node-externals": "^3.0.0",
+    "wrapper-webpack-plugin": "^2.1.0"
+  },
+  "dependencies": {
+    "apollo-server-express": "^3.3.0",
+    "express": "^4.17.1",
+    "express-http-context": "^1.2.4",
+    "graphql-tools": "^8.2.0",
+    "shared": "1.0.0"
+  }
+}

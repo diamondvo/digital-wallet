@@ -1,0 +1,5 @@
+{
+  "watch": ["src"],
+  "exec": "webpack && node ./build/server.bundle.js",
+  "ext": "ts"
+}
