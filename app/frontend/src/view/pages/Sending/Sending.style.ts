@@ -48,6 +48,7 @@ export const BasedInputStyle = styled(Input)`
   height: 40px;
 `;
 
+// TODO: need to move the common style
 export const ImageStyle = styled.img<BasicOptions>`
     ${({ width, height }) => {
       return `

@@ -1,0 +1,5 @@
+const credential = {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImFjY291bnROdW1iZXIiOiI3MTIzIDgwOTAgMTk5OSIsInBhc3N3b3JkIjoiMTIzNDU2In0.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.7JjZD2RUkmBJhHz6TFhneQ0HLpDFNnv1xsq6MT_-s3M'
+}
+
+export default credential;

@@ -54,9 +54,7 @@ const ProtectedRoutes = () => (
           const PageComponent = page.Component;
           const title = page.title;
           return <Route path={page.id} key={page.id} exact>
-            {/* <StyledContentContainer> */}
               <PageComponent title={title} />
-            {/* </StyledContentContainer> */}
           </Route>
         })
       }
@@ -75,9 +73,7 @@ export const Layout: React.FC = () => {
               const PageComponent = page.Component;
               const title = page.title;
               return <Route path={page.id} key={page.id} exact>
-                {/* <StyledContentContainer> */}
                   <PageComponent title={title} />
-                {/* </StyledContentContainer> */}
               </Route>
             })
           }

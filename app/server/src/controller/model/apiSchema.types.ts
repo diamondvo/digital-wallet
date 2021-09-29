@@ -11,12 +11,31 @@ const typeDefs = `
   type AccountDetailsResponse {
     accountNumber: String
     accountName: String
-    token: String
     assets: [Asset]
   }
 
+  type CredentialResponse {
+    token: String
+  }
+
+  input AssetParams {
+    fromAccountNumber: String
+    toAccountNumber: String
+    assetCurrency: String
+    amount: Float
+  }
+
+  type AssetResponse {
+    currency: String
+  }
+
   type Query {
-    accountDetails(accountNumber: String!, password: String!): AccountDetailsResponse
+    accountDetails: AccountDetailsResponse
+  }
+
+  type Mutation {
+    login(accountNumber: String!, password: String!): CredentialResponse
+    sendAsset(assetParams: AssetParams): AssetResponse
   }
 `;
 

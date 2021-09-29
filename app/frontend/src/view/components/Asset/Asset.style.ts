@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface AssetRow {
   isLastRow?: boolean;
+  isControl?: boolean;
 }
 
 export interface BasedOptions {
@@ -37,9 +38,9 @@ export const AssetContent = styled.h3`
 `;
 
 export const AssetRow = styled.div<AssetRow>`
-  ${({ theme, isLastRow }) => {
+  ${({ theme, isLastRow, isControl }) => {
     return `
-      background: ${theme.color.secondary};
+      background: ${isControl ? theme.color.secondary : theme.color.white};
       border-radius: ${theme.border.radius.strong};
       display: flex;
       align-items: center;
@@ -54,6 +55,13 @@ export const AssetRow = styled.div<AssetRow>`
       }
 
       ${!isLastRow && `margin-bottom: ${theme.spaces.sx};`}
+
+      ${!isControl && `
+      &:hover {
+        background: ${theme.color.secondary};
+        cursor: pointer;
+      }
+    `}
     `;
   }}
 `

@@ -22,6 +22,7 @@ export const IconCard = styled.div<MiddleCard>`
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
   ${({ middle }) => middle && `
     margin-left: 24px;
     margin-right: 24px;
@@ -44,6 +45,9 @@ export const ImageIcon = styled.img`
   width: 27px;
   height: 27px;
   opacity: 0.5;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 export const ActionLabel = styled.label`

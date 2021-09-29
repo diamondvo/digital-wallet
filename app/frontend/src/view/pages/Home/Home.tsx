@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   HomeContainer,
   LeftParagraphStyle,
@@ -11,22 +11,36 @@ import userIcon from 'src/images/user.svg';
 import BalanceCard from 'src/view/components/BalanceCard';
 import TransactionType from 'src/view/components/TransactionType';
 import Asset from 'src/view/components/Asset';
+import useGetAccountDetails from 'src/utils/hook/useGetAccountDetails';
+import { useHistory } from 'react-router';
+import { GlobalContext } from 'src/view/components/GlobalContext/GlobalContext';
+export interface HomeStateType {
+  accountNumber: string;
+}
 
-const Home: React.FC = () => {
+const Home: React.FC = props => {
+  const context = useContext(GlobalContext);
+  const history = useHistory();
+  const { loading, error, data } = useGetAccountDetails();
+  if (loading) return <div>...Loading</div>;
+  if (error) return <p>An error occurred</p>;
+  const defaultAsset = data.assets.find(asset => asset.default);
+  const otherAssets = data.assets.filter(asset => asset.currency !== defaultAsset.currency);
+
   return <HomeContainer>
     <RowStyle>
       <UserInfoStyle>
         <LeftParagraphStyle>
           <div />
-          Ronin Wallet</LeftParagraphStyle>
+          {data.accountName} Wallet</LeftParagraphStyle>
         <IconSectionStyle>
           <ImageIcon src={userIcon} alt="" />
         </IconSectionStyle>
       </UserInfoStyle>
     </RowStyle>
-    <BalanceCard />
-    <TransactionType />
-    <Asset />
+    <BalanceCard accountNumber={context.accountNumber} accountBalance={defaultAsset} />
+    <TransactionType dispatchAction={actionType => history.push({ pathname: actionType })} />
+    <Asset assets={otherAssets} />
   </HomeContainer>
 }
 

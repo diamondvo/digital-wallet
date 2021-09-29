@@ -12,13 +12,20 @@ import {
 } from './BalanceCard.style';
 import copyIcon from 'src/images/copy.svg';
 import subtract from 'src/images/subtract.png';
+import { Asset } from 'shared';
+import { formatNumber } from 'src/utils/format';
 
-const BalanceCard: React.FC = () => {
+type BalanceType = {
+  accountNumber: string;
+  accountBalance: Asset;
+}
+
+const BalanceCard: React.FC<BalanceType> = ({ accountNumber, accountBalance }) => {
   return <BalanceContainer>
     <RowStyle>
       <div>
         <TitleStyle>My Wallet</TitleStyle>
-        <AccountNumberStyle>(7300 3777 3888 3334)</AccountNumberStyle>
+        <AccountNumberStyle>({accountNumber})</AccountNumberStyle>
       </div>
       <div>
         <img src={copyIcon} alt="Click to copy" />
@@ -27,8 +34,8 @@ const BalanceCard: React.FC = () => {
     <BorderSeperateStyle />
     <BalanceSection>
       <div>
-        <H2Style>1,000 USD</H2Style>
-        <H3Style>23,046,000 USD</H3Style>
+        <H2Style>{formatNumber(accountBalance.amount)} {formatNumber(accountBalance.currency)}</H2Style>
+        <H3Style>{formatNumber(accountBalance.vndAmount)} VND</H3Style>
       </div>
       <SpecificImg src={subtract} alt=""/>
     </BalanceSection>

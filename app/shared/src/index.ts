@@ -1,6 +1,6 @@
 export const GRAPHQL_PATH = '/digital-wallet/graph';
 
-export type Assets = {
+export type Asset = {
   currency: string;
   amount: number;
   vndAmount: number;
@@ -10,11 +10,21 @@ export type Assets = {
 export type AccountDetailsResponse = {
   accountNumber: string;
   accountName: string;
-  token: string;
-  assets: Assets[];
+  assets: Asset[];
 }
 
 export type AccountParams = {
   accountNumber: string;
   password: string;
+}
+
+export type CredentialInfo = {
+  token: string;
+}
+
+export type AssetParams = {
+  fromAccountNumber: string;
+  toAccountNumber: string;
+  assetCurrency: string;
+  amount: number;
 }
