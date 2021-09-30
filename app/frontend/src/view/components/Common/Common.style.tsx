@@ -40,10 +40,10 @@ ${({ fontSize, fontWeight, color, paddingBottom, paddingTop, paddingLeft, paddin
     font-weight: ${fontWeight};
     color: ${color};
     margin: 0;
-    ${paddingBottom && `pading-bottom: ${paddingBottom}px;`}
-    ${paddingTop && `pading-top: ${paddingTop}px;`}
-    ${paddingLeft && `pading-left: ${paddingLeft}px;`}
-    ${paddingRight && `pading-right: ${paddingRight}px;`}
+    ${paddingBottom && `padding-bottom: ${paddingBottom}px;`}
+    ${paddingTop && `padding-top: ${paddingTop}px;`}
+    ${paddingLeft && `padding-left: ${paddingLeft}px;`}
+    ${paddingRight && `padding-right: ${paddingRight}px;`}
   `;
   }}
 `;
@@ -51,4 +51,19 @@ ${({ fontSize, fontWeight, color, paddingBottom, paddingTop, paddingLeft, paddin
 export const StyledContentContainer = styled.div`
   padding-left: ${({ theme }) => theme.spaces.md};
   padding-right: ${({ theme }) => theme.spaces.md};
+`;
+
+export const LabelStyle = styled.label<BasicOptions>`
+  ${({ fontSize, fontWeight, color, paddingBottom, paddingTop, paddingLeft, paddingRight }) => {
+    return `
+      font-size: ${fontSize}px;
+      font-weight: ${fontWeight};
+      color: ${color};
+      padding-left: ${paddingLeft}px;
+      ${paddingBottom && `padding-bottom: ${paddingBottom}px;` }
+      ${paddingTop && `padding-top: ${paddingTop}px;`}
+      ${paddingRight && `padding-right: ${paddingRight}px;`};
+      text-transform: uppercase;
+    `;
+  }}
 `;

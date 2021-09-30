@@ -1,6 +1,5 @@
 import { Input } from "antd";
-import { PrimaryButton } from "src/view/components/Common/Common.style";
-import { BasicOptions } from "src/view/components/Common/Common.types";
+import { LabelStyle, PrimaryButton } from "src/view/components/Common/Common.style";
 import styled from "styled-components";
 
 export const CardHeader = styled.div`
@@ -13,20 +12,7 @@ export const CardHeader = styled.div`
   padding-right: 32px;
 `;
 
-export const LabelStyle = styled.label<BasicOptions>`
-  ${({ fontSize, fontWeight, color, paddingBottom, paddingTop, paddingLeft, paddingRight }) => {
-    return `
-      font-size: ${fontSize}px;
-      font-weight: ${fontWeight};
-      color: ${color};
-      ${paddingBottom && `pading-bottom: ${paddingBottom}px;` }
-      ${paddingTop && `pading-top: ${paddingTop}px;`}
-      ${paddingLeft && `pading-left: ${paddingLeft}px;`}
-      ${paddingRight && `pading-right: ${paddingRight}px;`};
-      text-transform: uppercase;
-    `;
-  }}
-`;
+
 
 export const BasedInputStyle = styled(Input)`
   border: 1px solid ${({ theme }) => theme.border.color.blueE0};

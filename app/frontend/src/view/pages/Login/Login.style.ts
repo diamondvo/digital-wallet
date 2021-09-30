@@ -44,14 +44,6 @@ export const InputGroupContainer = styled.div`
   padding-top: ${({ theme }) => theme.spaces.lg};
 `;
 
-export const LabelStyle = styled.label`
-  color: ${({ theme }) => theme.color.black700};
-  font-weight: ${({ theme }) => theme.font.weight.bold};
-  padding-left: ${({ theme }) => theme.spaces.sx};
-  font-size: ${({ theme }) => theme.font.size.xxs};
-  text-transform: uppercase;
-`;
-
 export const InputPasswordStyle = styled(Input.Password)`
   border: 1px solid ${({ theme }) => theme.border.color.blueE0};
   border-radius:  ${({ theme }) => theme.border.radius.strong};

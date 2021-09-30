@@ -1,6 +1,6 @@
 import React from 'react';
-import { PrimaryButton, PrimaryParagraph } from 'src/view/components/Common/Common.style';
-import { ModalContainer, CommonHeading3 } from 'src/view/components/ConfirmModal/ConfirmModal.style';
+import { PrimaryParagraph } from 'src/view/components/Common/Common.style';
+import { ModalContainer, CommonHeading3, OkButton } from 'src/view/components/ConfirmModal/ConfirmModal.style';
 
 const ConfirmModal: React.FC<{ visible: boolean, setVisible: (isVisible: boolean) => void, currency: string }>
   = ({ visible, setVisible, currency }) => {
@@ -19,7 +19,7 @@ const ConfirmModal: React.FC<{ visible: boolean, setVisible: (isVisible: boolean
       <PrimaryParagraph paddingBottom={24}>
         Thank you for using our service
       </PrimaryParagraph>
-      <PrimaryButton height={40} onClick={() => setVisible(false)}>OK</PrimaryButton>
+      <OkButton height={40} onClick={() => setVisible(false)} color="">OK</OkButton>
     </ModalContainer>
   }
 

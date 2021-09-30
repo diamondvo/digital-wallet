@@ -6,7 +6,6 @@ import {
   TitleStyle,
   StyledParagraph,
   InputGroupContainer,
-  LabelStyle,
   InputPasswordStyle,
   ButtonStyle
 } from 'src/view/pages/Login/Login.style';
@@ -16,19 +15,31 @@ import { Form } from 'antd';
 import useLogin from 'src/utils/hook/useLogin';
 import { useHistory } from 'react-router';
 import { PAGE_ID } from 'src/config/pageConfig';
+import { LabelStyle, PrimaryParagraph } from 'src/view/components/Common/Common.style';
+import theme from 'src/config/theme';
 
 const Login: React.FC = () => {
   const history = useHistory();
 
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState(null);
+  const [invalidPassword, setInvalidPassword] = useState(false);
   const { login, loading, error } = useLogin(ACCOUNT_NUMBER, password);
 
   if (loading) return <div>...Loading</div>;
   if (error) return <p>An error occurred</p>;
 
   const handleUnlock = async () => {
-    const loginRes = await login();
-    loginRes?.data.login.token && history.push(PAGE_ID.HOME_PAGE);
+    if (password) {
+      const loginRes = await login();
+      loginRes?.data.login.token && history.push(PAGE_ID.HOME_PAGE);
+    } else {
+      setInvalidPassword(true);
+    }
+  }
+
+  const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInvalidPassword(false);
+    setPassword(e.target.value);
   }
 
   return <LoginContainer>
@@ -40,12 +51,19 @@ const Login: React.FC = () => {
     <Form onFinish={handleUnlock}>
       <Form.Item>
         <InputGroupContainer>
-          <LabelStyle>Enter password</LabelStyle>
-          <InputPasswordStyle value={password} onChange={e => setPassword(e.target.value)} />
-          <RowContent paddingTop={24}>
-            <ButtonStyle htmlType="submit">Unlock</ButtonStyle>
-          </RowContent>
+          <LabelStyle
+            color={theme.color.black700}
+            fontWeight={700}
+            fontSize={10}
+            paddingLeft={8}
+          >Enter password
+          </LabelStyle>
+          <InputPasswordStyle value={password} onChange={onPasswordChange} />
+          {invalidPassword && <PrimaryParagraph fontSize={12} color='#f55d5d'>Password is required</PrimaryParagraph>}
         </InputGroupContainer>
+        <RowContent paddingTop={24}>
+          <ButtonStyle htmlType="submit">Unlock</ButtonStyle>
+        </RowContent>
       </Form.Item>
     </Form>
   </LoginContainer>

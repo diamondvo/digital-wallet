@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import {
   CardHeader,
-  LabelStyle,
   BasedInputStyle,
   SpecialLabel,
   ButtonGroup,
@@ -19,7 +18,7 @@ import { GlobalContext } from 'src/view/components/GlobalContext/GlobalContext';
 import useGetAccountDetails from 'src/utils/hook/useGetAccountDetails';
 import useSendAsset from 'src/utils/hook/useSendAsset';
 import ConfirmModal from 'src/view/components/ConfirmModal';
-import { ImageStyle, InputGroupContainer, PrimaryParagraph, StyledContentContainer } from 'src/view/components/Common/Common.style';
+import { ImageStyle, InputGroupContainer, LabelStyle, PrimaryParagraph, StyledContentContainer } from 'src/view/components/Common/Common.style';
 
 const SendingAsset: React.FC = () => {
   const [isShowModal, setIsShowModal] = useState(false);
@@ -27,6 +26,10 @@ const SendingAsset: React.FC = () => {
   const [assetSelected, setAssetSelected] = useState(null);
   const [toAccount, setToAccount] = useState(null);
   const [amount, setAmount] = useState(null);
+
+  const [invalidTo, setInvalidTo] = useState(false);
+  const [invalidAsset, setInvalidAsset] = useState(false);
+  const [invalidAmount, setInvalidAmount] = useState(false);
 
   const context = useContext(GlobalContext);
   const history = useHistory();
@@ -43,8 +46,24 @@ const SendingAsset: React.FC = () => {
   if (accountDetailError || sendAssetError) return <p>An error occurred</p>;
 
   const handleSendAsset = async () => {
-    const assetRes = await sendAsset();
-    assetRes?.data?.sendAsset?.currency && setIsShowConfirmModal(true)
+    if (amount && toAccount && assetSelected) {
+      const assetRes = await sendAsset();
+      assetRes?.data?.sendAsset?.currency && setIsShowConfirmModal(true)
+    } else {
+      !assetSelected && setInvalidAsset(true);
+      !amount && setInvalidAmount(true);
+      !toAccount &&  setInvalidTo(true);
+    }
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
+    if (type === 'to') {
+      setInvalidTo(false);
+      setToAccount(e.target.value);
+    } else {
+      setInvalidAmount(false);
+      setAmount(e.target.value);
+    }
   }
 
   return <form><div className="sending-asset-container">
@@ -75,7 +94,8 @@ const SendingAsset: React.FC = () => {
           fontSize={10}
           paddingLeft={8}
         >TO</LabelStyle>
-        <BasedInputStyle value={toAccount} onChange={e => setToAccount(e.target.value)} />
+        <BasedInputStyle value={toAccount} onChange={e => handleInputChange(e, 'to')} />
+        {invalidTo && <PrimaryParagraph fontSize={12} color='#f55d5d'>Invalid To</PrimaryParagraph>}
       </InputGroupContainer>
       <InputGroupContainer paddingBottom={16}>
         <LabelStyle
@@ -92,6 +112,7 @@ const SendingAsset: React.FC = () => {
           onFocus={(e) => { e.preventDefault(); setIsShowModal(true) }}
           value={assetSelected?.currency}
         />
+        {invalidAsset && <PrimaryParagraph fontSize={12} color='#f55d5d'>Please choose a currency</PrimaryParagraph>}
       </InputGroupContainer>
       <InputGroupContainer paddingBottom={16}>
         <RowStyle>
@@ -101,18 +122,19 @@ const SendingAsset: React.FC = () => {
             fontSize={10}
             paddingLeft={8}
           >Amount</LabelStyle>
-          <LabelStyle
+          {assetSelected && <LabelStyle
             color={theme.color.black900}
             fontWeight={700}
             fontSize={10}
             paddingLeft={8}
-          >Available: {assetSelected?.amount} {assetSelected?.currency}</LabelStyle>
+          >Available: {assetSelected?.amount} {assetSelected?.currency}</LabelStyle>}
         </RowStyle>
         <BasedInputStyle
           suffix={<SpecialLabel fontSize={10} fontWeight={700} color={theme.color.black700}>Max</SpecialLabel>}
           value={amount}
-          onChange={e => setAmount(e.target.value)}
+          onChange={e => handleInputChange(e, 'amount')}
         />
+        {invalidAmount && <PrimaryParagraph fontSize={12} color='#f55d5d'>Invalid amount</PrimaryParagraph>}
       </InputGroupContainer>
     </StyledContentContainer>
     <StyledContentContainer>
@@ -126,6 +148,7 @@ const SendingAsset: React.FC = () => {
       setVisible={isVisible => setIsShowModal(isVisible)}
       assets={accountDetailData.assets}
       onSelect={asset => {
+        setInvalidAsset(false);
         setIsShowModal(false);
         setAssetSelected(asset);
       }}

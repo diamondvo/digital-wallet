@@ -1,5 +1,6 @@
 import { Modal } from "antd";
 import styled from "styled-components";
+import { PrimaryButton } from "src/view/components/Common/Common.style";
 
 type BasicHeadingOptions = {
   paddingTop?: number;
@@ -65,4 +66,9 @@ export const CommonHeading3 = styled.h3<BasicHeadingOptions>`
       ${fontWeight && `font-weight: ${fontWeight};`};
       ${textAlign && `text-align: ${textAlign};`};
   `}};
+`;
+
+export const OkButton = styled(PrimaryButton)`
+  background: ${({ theme }) => theme.color.primary};
+  color: ${({ theme }) => theme.color.white};
 `;
