@@ -2,7 +2,7 @@ import React from 'react';
 import {
   ActionTypeStyle, TransactionTypeContainer,
   IconCard, ImageIcon, IconContent, ActionLabel
-} from './TransactionType.style';
+} from 'src/view/components/TransactionType/TransactionType.style';
 import depositIcon from 'src/images/deposit.svg';
 import sendIcon from 'src/images/send.svg';
 import exchangeIcon from 'src/images/exchange.svg';

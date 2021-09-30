@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledH1, StyleErrorContainer } from './ServiceError.style';
+import { StyledH1, StyleErrorContainer } from 'src/view/pages/ServiceError/ServiceError.style';
 
 const ServiceError: React.FC = () => {
   return <StyleErrorContainer>

@@ -5,16 +5,6 @@ interface AssetRow {
   isControl?: boolean;
 }
 
-export interface BasedOptions {
-  fontSize?: number;
-  fontWeight?: number;
-  color?: string;
-  paddingBottom?: number;
-  paddingTop?: number;
-  paddingLeft?: number;
-  paddingRight?: number;
-}
-
 export const AssetContainer = styled.div`
 `;
 
@@ -65,19 +55,3 @@ export const AssetRow = styled.div<AssetRow>`
     `;
   }}
 `
-
-// TODO: Move to the common component folder
-export const ParagrahStyle = styled.p<BasedOptions>`
-  ${({ fontSize, fontWeight, color, paddingBottom, paddingTop, paddingLeft, paddingRight }) => {
-    return `
-      font-size: ${fontSize}px;
-      font-weight: ${fontWeight};
-      color: ${color};
-      margin: 0;
-      ${paddingBottom && `pading-bottom: ${paddingBottom}px;` }
-      ${paddingTop && `pading-top: ${paddingTop}px;`}
-      ${paddingLeft && `pading-left: ${paddingLeft}px;`}
-      ${paddingRight && `pading-right: ${paddingRight}px;`}
-    `;
-  }}
-`;

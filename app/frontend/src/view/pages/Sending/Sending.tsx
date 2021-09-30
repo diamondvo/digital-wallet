@@ -1,32 +1,29 @@
 import React, { useState, useContext } from 'react';
 import {
   CardHeader,
-  InputGroupContainer,
   LabelStyle,
   BasedInputStyle,
-  ImageStyle,
   SpecialLabel,
   ButtonGroup,
   CancelButton,
   SendButton
-} from './Sending.style';
+} from 'src/view/pages/Sending/Sending.style';
 import backIcon from 'src/images/back.svg';
 import stackIcon from 'src/images/stack.svg';
 import eurIcon from 'src/images/eur.png';
-import { ParagrahStyle } from 'src/view/components/Asset/Asset.style';
 import theme from 'src/config/theme';
-import { StyledContentContainer } from 'src/view/components/Layout/Layout.style';
-import { RowStyle } from '../Home/Home.style';
+import { RowStyle } from 'src/view/pages/Home/Home.style';
 import { useHistory } from 'react-router';
 import ModalComponent from 'src/view/components/Modal';
 import { GlobalContext } from 'src/view/components/GlobalContext/GlobalContext';
 import useGetAccountDetails from 'src/utils/hook/useGetAccountDetails';
 import useSendAsset from 'src/utils/hook/useSendAsset';
 import ConfirmModal from 'src/view/components/ConfirmModal';
+import { ImageStyle, InputGroupContainer, PrimaryParagraph, StyledContentContainer } from 'src/view/components/Common/Common.style';
 
 const SendingAsset: React.FC = () => {
   const [isShowModal, setIsShowModal] = useState(false);
-  const [isShowConfirmModal , setIsShowConfirmModal] = useState(false);
+  const [isShowConfirmModal, setIsShowConfirmModal] = useState(false);
   const [assetSelected, setAssetSelected] = useState(null);
   const [toAccount, setToAccount] = useState(null);
   const [amount, setAmount] = useState(null);
@@ -38,7 +35,7 @@ const SendingAsset: React.FC = () => {
     {
       fromAccountNumber: context.accountNumber,
       toAccountNumber: toAccount,
-      assetCurrency: assetSelected?.currency  || 'USD',
+      assetCurrency: assetSelected?.currency,
       amount: parseFloat(amount)
     }
   );
@@ -53,11 +50,12 @@ const SendingAsset: React.FC = () => {
   return <form><div className="sending-asset-container">
     <CardHeader>
       <img src={backIcon} alt="Go back" onClick={() => history.goBack()} />
-      <ParagrahStyle
+      <PrimaryParagraph
         fontSize={14}
         fontWeight={600}
         color={theme.color.black900}
-      >Send Assets</ParagrahStyle>
+      >Send Assets
+      </PrimaryParagraph>
       <div />
     </CardHeader>
     <StyledContentContainer>
@@ -93,7 +91,6 @@ const SendingAsset: React.FC = () => {
           }
           onFocus={(e) => { e.preventDefault(); setIsShowModal(true) }}
           value={assetSelected?.currency}
-
         />
       </InputGroupContainer>
       <InputGroupContainer paddingBottom={16}>

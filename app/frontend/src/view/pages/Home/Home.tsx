@@ -6,7 +6,7 @@ import {
   RowStyle,
   UserInfoStyle,
   ImageIcon
-} from './Home.style';
+} from 'src/view/pages/Home/Home.style';
 import userIcon from 'src/images/user.svg';
 import BalanceCard from 'src/view/components/BalanceCard';
 import TransactionType from 'src/view/components/TransactionType';

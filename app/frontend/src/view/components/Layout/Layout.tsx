@@ -1,6 +1,6 @@
 import React from 'react';
 import ServiceError from 'src/view/pages/ServiceError';
-import { StyledLayoutContainer } from './Layout.style';
+import { StyledLayoutContainer } from 'src/view/components/Layout/Layout.style';
 import { Route, Switch } from 'react-router';
 import { pagesConfig, PAGE_ID, privatePagesConfig } from 'src/config/pageConfig';
 import { BrowserRouter, Redirect } from 'react-router-dom';
@@ -63,8 +63,8 @@ export const Layout: React.FC = () => {
           {
             privatePagesConfig.map(page => {
               const PageComponent = page.Component;
-              return <PrivateRoute key={page.id} path={PAGE_ID[page.id]}>
-                <PageComponent title={page.title}/>
+              return <PrivateRoute key={page.id} path={page.id}>
+                <PageComponent title={page.title} />
               </PrivateRoute>
             })
           }

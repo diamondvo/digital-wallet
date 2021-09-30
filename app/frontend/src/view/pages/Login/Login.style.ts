@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Button, Input } from 'antd';
-import { StyledContentContainer } from 'src/view/components/Layout/Layout.style';
+import { StyledContentContainer } from 'src/view/components/Common/Common.style';
 
 interface RowProps {
   paddingTop?: number;

@@ -1,4 +1,4 @@
-import { StyledContentContainer } from "src/view/components/Layout/Layout.style";
+import { StyledContentContainer } from "src/view/components/Common/Common.style";
 import styled from "styled-components";
 
 export const HomeContainer = styled(StyledContentContainer)`

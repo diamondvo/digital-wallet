@@ -34,11 +34,12 @@ export const pagesConfig: Array<PageConfigType> = [
 
 export const privatePagesConfig: Array<PageConfigType> = [
   {
-    id: PAGE_ID.HOME_PAGE,
-    Component: Home,
-  },
-  {
     id: PAGE_ID.SENDING_PAGE,
     Component: Sending,
   },
+  {
+    id: PAGE_ID.HOME_PAGE,
+    Component: Home,
+  },
+  
 ]

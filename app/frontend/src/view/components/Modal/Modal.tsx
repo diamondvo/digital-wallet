@@ -1,9 +1,9 @@
 import React from 'react';
 import { Asset } from 'shared';
 import closeIcon from 'src/images/close.svg';
-import { ImageStyle } from 'src/view/pages/Sending/Sending.style';
-import { MainAsset } from '../Asset/Asset';
-import { ModalContainer } from './Modal.style';
+import { ImageStyle } from 'src/view/pages/Login/Login.style';
+import { MainAsset } from 'src/view/components/Asset/Asset';
+import { ModalContainer } from 'src/view/components/Modal/Modal.style';
 
 const ModalComponent: React.FC<{ visible: boolean, setVisible: (isVisible: boolean) => void, assets: Array<Asset>, onSelect: (asset: Asset) => void }>
 = ({ visible, setVisible, assets, onSelect }) => {

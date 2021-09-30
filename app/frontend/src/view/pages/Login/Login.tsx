@@ -9,12 +9,13 @@ import {
   LabelStyle,
   InputPasswordStyle,
   ButtonStyle
-} from './Login.style';
+} from 'src/view/pages/Login/Login.style';
 import roninLogin from 'src/images/ronin-logo.png';
 import { ACCOUNT_NUMBER } from 'src/constants';
 import { Form } from 'antd';
 import useLogin from 'src/utils/hook/useLogin';
 import { useHistory } from 'react-router';
+import { PAGE_ID } from 'src/config/pageConfig';
 
 const Login: React.FC = () => {
   const history = useHistory();
@@ -27,7 +28,7 @@ const Login: React.FC = () => {
 
   const handleUnlock = async () => {
     const loginRes = await login();
-    loginRes?.data.login.token && history.push('/');
+    loginRes?.data.login.token && history.push(PAGE_ID.HOME_PAGE);
   }
 
   return <LoginContainer>

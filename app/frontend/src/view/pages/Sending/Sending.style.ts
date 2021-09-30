@@ -1,11 +1,7 @@
-import { Button, Input } from "antd";
-import { BasedOptions } from "src/view/components/Asset/Asset.style";
+import { Input } from "antd";
+import { PrimaryButton } from "src/view/components/Common/Common.style";
+import { BasicOptions } from "src/view/components/Common/Common.types";
 import styled from "styled-components";
-
-interface BasicOptions {
-  width?: number;
-  height?: number;
-}
 
 export const CardHeader = styled.div`
   display: flex;
@@ -17,17 +13,7 @@ export const CardHeader = styled.div`
   padding-right: 32px;
 `;
 
-// TODO: Move to the common components
-export const InputGroupContainer = styled.div<BasedOptions>`
-  ${({ paddingBottom, paddingTop }) => {
-    return `
-      width: 100%;
-      ${paddingBottom && `padding-bottom: ${paddingBottom}px;`};
-      ${paddingTop && `padding-top: ${paddingTop}px;`};
-  `}};
-`;
-
-export const LabelStyle = styled.label<BasedOptions>`
+export const LabelStyle = styled.label<BasicOptions>`
   ${({ fontSize, fontWeight, color, paddingBottom, paddingTop, paddingLeft, paddingRight }) => {
     return `
       font-size: ${fontSize}px;
@@ -48,16 +34,6 @@ export const BasedInputStyle = styled(Input)`
   height: 40px;
 `;
 
-// TODO: need to move the common style
-export const ImageStyle = styled.img<BasicOptions>`
-    ${({ width, height }) => {
-      return `
-        width: ${width}px;
-        height: ${height}px;
-      `;
-    }}
-`;
-
 export const SpecialLabel = styled(LabelStyle)`
     padding: 2px 8px;
     border-radius: ${({ theme }) => theme.border.radius.strong};
@@ -74,26 +50,13 @@ export const ButtonGroup = styled.div`
     padding-bottom: 20px;
 `;
 
-const BasicButton = styled(Button)<BasicOptions>`
-  ${({ theme, width, height }) => {
-    return `
-      width: ${width ? `${width}px` : '100%'};
-      height: ${height ? `${height}px` : '100%'};
-      font-size: ${theme.font.size.sm};
-      font-weight: ${theme.font.weight.semibold};
-      border: none;
-      border-radius: ${theme.border.radius.strong};
-    `;
-  }}
-`;
-
-export const CancelButton = styled(BasicButton)`
+export const CancelButton = styled(PrimaryButton)`
   background: ${({ theme }) => theme.color.secondary};
   color: ${({ theme }) => theme.color.singlePrimary};
   margin-right: 8px;
 `;
 
-export const SendButton = styled(BasicButton)`
+export const SendButton = styled(PrimaryButton)`
   background: ${({ theme }) => theme.color.primary};
   color: ${({ theme }) => theme.color.white};
   margin-left: 8px;

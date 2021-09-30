@@ -1,5 +1,5 @@
 import React from 'react';
-import { AssetContainer, AssetTitle, AssetContent, AssetRow, ParagrahStyle } from './Asset.style';
+import { AssetContainer, AssetTitle, AssetContent, AssetRow } from 'src/view/components/Asset/Asset.style';
 import eurImg from 'src/images/eur.png';
 import yenImg from 'src/images/yen.png';
 import usdImg from 'src/images/usd.png';
@@ -7,6 +7,7 @@ import theme from 'src/config/theme';
 import { Asset } from 'shared';
 import { formatNumber } from 'src/utils/format';
 import { CURRENCIES } from 'src/constants';
+import { PrimaryParagraph } from 'src/view/components/Common/Common.style';
 
 const AssetRecord: React.FC<{ asset: Asset }> = ({ asset }) => {
   const getCurrencyImg = (currency: string) => {
@@ -22,17 +23,17 @@ const AssetRecord: React.FC<{ asset: Asset }> = ({ asset }) => {
   return <React.Fragment>
     {getCurrencyImg(asset.currency)}
     <div className="balance-info" >
-      <ParagrahStyle
+      <PrimaryParagraph
         fontSize={14}
         fontWeight={600}
         paddingBottom={4}
         color={theme.color.black900}>
         {formatNumber(asset.amount)} {asset.currency}
-      </ParagrahStyle>
-      <ParagrahStyle
+      </PrimaryParagraph>
+      <PrimaryParagraph
         fontSize={12}
         fontWeight={400}
-        color={theme.color.grey600}>{formatNumber(asset.vndAmount)} VND</ParagrahStyle>
+        color={theme.color.grey600}>{formatNumber(asset.vndAmount)} VND</PrimaryParagraph>
     </div >
   </React.Fragment>
 }

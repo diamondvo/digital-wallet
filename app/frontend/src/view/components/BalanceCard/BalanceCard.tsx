@@ -9,7 +9,7 @@ import {
   H2Style,
   H3Style,
   SpecificImg
-} from './BalanceCard.style';
+} from 'src/view/components/BalanceCard/BalanceCard.style';
 import copyIcon from 'src/images/copy.svg';
 import subtract from 'src/images/subtract.png';
 import { Asset } from 'shared';
