@@ -23,7 +23,7 @@ export const InputGroupContainer = styled.div<BasedOptions>`
     return `
       width: 100%;
       ${paddingBottom && `padding-bottom: ${paddingBottom}px;`};
-      ${paddingTop && `padding-top: ${paddingBottom}px;`};
+      ${paddingTop && `padding-top: ${paddingTop}px;`};
   `}};
 `;
 

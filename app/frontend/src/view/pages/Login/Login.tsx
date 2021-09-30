@@ -14,13 +14,21 @@ import roninLogin from 'src/images/ronin-logo.png';
 import { ACCOUNT_NUMBER } from 'src/constants';
 import { Form } from 'antd';
 import useLogin from 'src/utils/hook/useLogin';
+import { useHistory } from 'react-router';
 
 const Login: React.FC = () => {
+  const history = useHistory();
+
   const [password, setPassword] = useState('');
   const { login, loading, error } = useLogin(ACCOUNT_NUMBER, password);
 
   if (loading) return <div>...Loading</div>;
   if (error) return <p>An error occurred</p>;
+
+  const handleUnlock = async () => {
+    const loginRes = await login();
+    loginRes?.data.login.token && history.push('/');
+  }
 
   return <LoginContainer>
     <RowContent>
@@ -28,7 +36,7 @@ const Login: React.FC = () => {
       <TitleStyle tabIndex={-1}>Ronin Wallet</TitleStyle>
       <StyledParagraph>Your Digital Password</StyledParagraph>
     </RowContent>
-    <Form onFinish={login}>
+    <Form onFinish={handleUnlock}>
       <Form.Item>
         <InputGroupContainer>
           <LabelStyle>Enter password</LabelStyle>

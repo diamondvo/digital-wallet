@@ -22,9 +22,11 @@ import ModalComponent from 'src/view/components/Modal';
 import { GlobalContext } from 'src/view/components/GlobalContext/GlobalContext';
 import useGetAccountDetails from 'src/utils/hook/useGetAccountDetails';
 import useSendAsset from 'src/utils/hook/useSendAsset';
+import ConfirmModal from 'src/view/components/ConfirmModal';
 
 const SendingAsset: React.FC = () => {
   const [isShowModal, setIsShowModal] = useState(false);
+  const [isShowConfirmModal , setIsShowConfirmModal] = useState(false);
   const [assetSelected, setAssetSelected] = useState(null);
   const [toAccount, setToAccount] = useState(null);
   const [amount, setAmount] = useState(null);
@@ -32,7 +34,7 @@ const SendingAsset: React.FC = () => {
   const context = useContext(GlobalContext);
   const history = useHistory();
   const { loading: accountDetailLoading, error: accountDetailError, data: accountDetailData } = useGetAccountDetails();
-  const { sendAsset, loading: sendAssetLoading, error: sendAssetError } = useSendAsset(
+  const { sendAsset, loading: sendAssetLoading, error: sendAssetError, data: sendAssetData } = useSendAsset(
     {
       fromAccountNumber: context.accountNumber,
       toAccountNumber: toAccount,
@@ -43,7 +45,10 @@ const SendingAsset: React.FC = () => {
   if (accountDetailLoading || sendAssetLoading) return <div>...Loading</div>;
   if (accountDetailError || sendAssetError) return <p>An error occurred</p>;
 
-  const handleSendAsset = () => sendAsset();
+  const handleSendAsset = async () => {
+    const assetRes = await sendAsset();
+    assetRes?.data?.sendAsset?.currency && setIsShowConfirmModal(true)
+  }
 
   return <form><div className="sending-asset-container">
     <CardHeader>
@@ -127,6 +132,14 @@ const SendingAsset: React.FC = () => {
         setIsShowModal(false);
         setAssetSelected(asset);
       }}
+    />
+    <ConfirmModal
+      visible={isShowConfirmModal}
+      setVisible={isVisible => {
+        setIsShowConfirmModal(isVisible);
+        history.goBack()
+      }}
+      currency={sendAssetData?.currency}
     />
   </div> </form>
 }
